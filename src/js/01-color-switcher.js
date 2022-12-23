@@ -13,6 +13,7 @@ let timerId = null;
 
 function onClickStart() {
   startBtnEl.disabled = true;
+  stopBtnEl.disabled = false;
   timerId = setInterval(changeColor, 1000);
 }
 
@@ -22,5 +23,6 @@ function changeColor() {
 
 function onClickStop() {
   startBtnEl.disabled = false;
+  stopBtnEl.disabled = true;
   clearInterval(timerId);
 }
