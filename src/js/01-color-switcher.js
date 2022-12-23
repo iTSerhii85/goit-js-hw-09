@@ -10,11 +10,12 @@ startBtnEl.addEventListener('click', onClickStart);
 stopBtnEl.addEventListener('click', onClickStop);
 
 let timerId = null;
+const PROMPT_DELAY = 1000;
 
 function onClickStart() {
   startBtnEl.disabled = true;
   stopBtnEl.disabled = false;
-  timerId = setInterval(changeColor, 1000);
+  timerId = setInterval(changeColor, PROMPT_DELAY);
 }
 
 function changeColor() {
