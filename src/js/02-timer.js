@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 require("flatpickr/dist/themes/dark.css");
 
 
@@ -23,8 +24,9 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] < new Date()) {
-      alert('Please choose a date in the future');
-    } 
+      Notiflix.Notify.failure('Please choose a date in the future');
+      startBtnEl.disabled = true;
+    }
       startBtnEl.disabled = false;
   },
 };
@@ -54,6 +56,7 @@ function onStartClick() {
     const timeValue = selectedTime - new Date();
 
     startBtnEl.disabled = true;
+    Notiflix.Block.hourglass('[data-start]');
 
     if (timeValue >= 0) {
       let leftTime = convertMs(timeValue);
@@ -62,8 +65,9 @@ function onStartClick() {
       leftMinutes.textContent = leftTime.minutes;
       leftSeconds.textContent = leftTime.seconds;
       } else {
-        clearInterval(timerId)
+        Notiflix.Block.remove('[data-start]');
+        Notiflix.Notify.success('Finish');
+        clearInterval(timerId);
         }
   },PROMPT_DELAY);
 }
- 
